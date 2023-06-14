@@ -1,8 +1,8 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 
 const args = process.argv.slice(2);
 
-if (args.length === undefined) {
+if (args.length === undefinied) {
   console.log('Not enough arguements');
 } else {
   const arg1 = args[0];
