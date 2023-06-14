@@ -9,18 +9,18 @@ module.exports = class Rectangle {
     }
   }
 
- print() {
+  print () {
     if (Object.keys(this).length === 0) {
       // Print an empty rectangle if the object is empty
-      console.log("Empty Rectangle");
+      console.log('Empty Rectangle');
       return;
     }
     for (let i = 0; i < this.height; i++) {
-      console.log("X".repeat(this.width));
+      console.log('X'.repeat(this.width));
     }
   }
 
-  rotate() {
+  rotate () {
     if (Object.keys(this).length === 0) {
       // No need to rotate an empty rectangle
       return;
@@ -30,12 +30,12 @@ module.exports = class Rectangle {
     this.height = temp;
   }
 
- double () {
+  double () {
 	 if (Object.keys(this).length === 0) {
       // No need to double an empty rectangle
       return;
     }
     this.width *= 2;
     this.height *= 2;
- }
-}
+  }
+};
