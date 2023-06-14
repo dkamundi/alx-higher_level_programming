@@ -2,7 +2,7 @@
 
 const args = process.argv.slice(2);
 
-if (args.length === undefinied) {
+if (args.length === undefined) {
   console.log('Not enough arguements');
 } else {
   const arg1 = args[0];
