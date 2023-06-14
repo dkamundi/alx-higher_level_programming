@@ -10,12 +10,13 @@ module.exports = class Rectangle {
   }
 
   print () {
-    for (let index = 0; index < this.height; index++) {
-      let rectView = '';
-      for (let index = 0; index < this.width; index++) {
-        rectView += 'X';
-      }
-      console.log(rectView);
+    if (Object.keys(this).length === 0) {
+      // Print an empty rectangle if the object is empty
+      console.log('Empty Rectangle');
+      return;
+    }
+    for (let i = 0; i < this.height; i++) {
+      console.log('X'.repeat(this.width));
     }
   }
 };
