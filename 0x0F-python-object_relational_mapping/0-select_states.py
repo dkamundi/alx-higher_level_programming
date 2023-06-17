@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 import sys
 import MySQLdb
 
@@ -17,7 +17,7 @@ cursor = db.cursor()
 cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
 #Fetch all rows from the result set
-row = cursor.fetchall()
+rows = cursor.fetchall()
 
 #Print the states
 for row in rows:
