@@ -1,33 +1,43 @@
 #!/usr/bin/python3
-import sys
+"""
+Script that displays all values in the states table of hbtn_0e_0_usa where
+name matches the argument
+"""
+
 import MySQLdb
+from sys import argv
 
-# Get command-line arguments
-username = sys.argv[1]
-password = sys.argv[2]
-database = sys.argv[3]
-state_name = sys.argv[4]
+if __name__ == '__main__':
+    # Script arguments
+    mysql_user = argv[1]
+    mysql_password = argv[2]
+    db_name = argv[3]
+    state_name = argv[4]
 
-# Connect to the MySQL server
-db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+    # Connect to MySQL database
+    db = MySQLdb.connect(
+        host='localhost',
+        port=3306,
+        user=mysql_user,
+        passwd=mysql_password,
+        db=db_name
+    )
 
-# Create a cursor object to interact with the database
-cursor = db.cursor()
+    # Create cursor to execute queries
+    cursor = db.cursor()
 
-# Create the SQL query with the user input
-sql_query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(state_name)
+    # Select states matching the provided name
+    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+    cursor.execute(query, (state_name,))
 
-# Execute the SQL query
-cursor.execute(sql_query)
+    # Fetch all rows
+    states = cursor.fetchall()
 
-# Fetch all the rows from the result set
-rows = cursor.fetchall()
+    # Print the states
+    for state in states:
+        print(state)
 
-# Print the states
-for row in rows:
-    print(row)
-
-# Close the cursor and database connection
-cursor.close()
-db.close()
+    # Close cursor and database connections
+    cursor.close()
+    db.close()
 
