@@ -1,28 +1,43 @@
 #!/usr/bin/python3
-import sys
+"""
+Script that lists all states with a name starting with 'N' (uppercase N)
+from the database hbtn_0e_0_usa
+"""
+
 import MySQLdb
+from sys import argv
 
-# Get command-line arguments
-username = sys.argv[1]
-password = sys.argv[2]
-database = sys.argv[3]
+if __name__ == '__main__':
+    # Script arguments
+    mysql_user = argv[1]
+    mysql_password = argv[2]
+    db_name = argv[3]
 
-# Connect to the MySQL server
-db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+    # Connect to MySQL database
+    db = MySQLdb.connect(
+        host='localhost',
+        port=3306,
+        user=mysql_user,
+        passwd=mysql_password,
+        db=db_name
+    )
 
-# Create a cursor object to interact with the database
-cursor = db.cursor()
+    # Create cursor to execute queries
+    cursor = db.cursor()
 
-# Execute the SQL query to retrieve states starting with 'N'
-cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    # Select states with names starting with 'N'
+    cursor.execute("""
+        SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC
+    """)
 
-# Fetch all the rows from the result set
-rows = cursor.fetchall()
+    # Fetch all rows
+    states = cursor.fetchall()
 
-# Print the states
-for row in rows:
-    print(row)
+    # Print the states
+    for state in states:
+        print(state)
 
-# Close the cursor and database connection
-cursor.close()
-db.close()
+    # Close cursor and database connections
+    cursor.close()
+    db.close()
+
