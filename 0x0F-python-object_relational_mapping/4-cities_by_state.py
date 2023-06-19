@@ -29,3 +29,4 @@ if __name__ == "__main__":
 	cursor.close()
 	# close connection
 	connection.close()
+
