@@ -4,7 +4,5 @@
 
 URL=$1
 
-response=$(curl -s -X DELETE "$URL")
-
-echo "$response"
+curl -s -X DELETE "$URL"
 
