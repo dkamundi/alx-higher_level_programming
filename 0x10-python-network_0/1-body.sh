@@ -2,4 +2,4 @@
 # Script: Get request body
 # Sends a GET request to a URL and displays the body of the response
 
-curl -sI "$1" | grep Content-Length | cut -d " " -f 2
+curl -sL "$1"
